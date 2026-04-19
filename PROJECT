@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arman Hub</title>
+<title>Arman Hub Login System</title>
 
 <style>
 body{
@@ -16,78 +16,128 @@ body{
   text-align:center;
 }
 
-/* Background animation */
+/* Background */
 @keyframes bg{
   0%{background-position:0%}
   50%{background-position:100%}
   100%{background-position:0%}
 }
 
-/* Header */
-h1{
-  margin:15px 0 5px;
+/* LOGIN */
+#loginBox{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
 }
 
-/* Clock */
-#clock{
-  font-size:18px;
+input{
+  padding:12px;
+  margin:8px;
+  border:none;
+  border-radius:8px;
+  width:200px;
+}
+
+button{
+  padding:10px 20px;
+  background:#25D366;
+  border:none;
+  border-radius:20px;
   font-weight:bold;
-  margin-bottom:10px;
+  cursor:pointer;
 }
 
-/* Grid */
+/* HEADER */
+h1{margin:10px}
+
+/* CLOCK */
+#clock{
+  margin:10px;
+  font-weight:bold;
+}
+
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  gap:12px;
   padding:15px;
 }
 
-/* Cards */
 .card{
   background:rgba(255,255,255,0.08);
   padding:20px;
   border-radius:15px;
   text-decoration:none;
   color:#fff;
-  box-shadow:0 0 15px rgba(0,255,0,0.4);
-  transition:0.3s;
+  box-shadow:0 0 10px rgba(0,255,0,0.3);
 }
 
-.card:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 25px #0f0;
-}
-
-/* Support Button */
-.support{
+/* SUPPORT BUTTON */
+.support-btn{
   position:fixed;
   bottom:20px;
   right:20px;
+  width:55px;
+  height:55px;
   background:#25D366;
-  padding:15px;
   border-radius:50%;
-  font-size:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  cursor:pointer;
+  box-shadow:0 0 15px #0f0;
+}
+
+/* SUPPORT OPTIONS */
+#supportMenu{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  display:none;
+  flex-direction:column;
+  gap:10px;
+}
+
+.support-item{
+  background:#111;
+  padding:10px;
+  border-radius:10px;
   text-decoration:none;
-  color:#000;
-  box-shadow:0 0 20px #0f0;
+  color:#fff;
+  font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Arman Qureshi Hub</h1>
+<!-- LOGIN -->
+<div id="loginBox">
+  <h2>Login</h2>
+  <input id="name" placeholder="Enter Name">
+  <input id="otp" placeholder="Enter OTP (1234)">
+  <button onclick="login()">Login</button>
+</div>
 
-<div id="clock">Loading time...</div>
+<!-- APP -->
+<div id="app" style="display:none">
+
+<h1>Arman Hub</h1>
+<div id="clock">Loading...</div>
 
 <div class="grid">
 
 <a class="card" href="https://wa.me/9026550240">WhatsApp</a>
 <a class="card" href="https://www.instagram.com/armanqureshi2800">Instagram</a>
-<a class="card" href="https://www.facebook.com/share/19pPMX9SMV/">Facebook</a>
-<a class="card" href="https://twitter.com/ArmanQureshi280">Twitter</a>
-<a class="card" href="https://youtube.com/@popular_ff?si=bvnTuAYGFwvj2z30">YouTube</a>
+<a class="card" href="https://www.youtube.com/@popular_ff">YouTube</a>
 <a class="card" href="https://www.linkedin.com/in/arman-qureshi-47953b295">LinkedIn</a>
 <a class="card" href="https://www.binance.com/en-IN/trade/BTC_USDT">Binance</a>
 <a class="card" href="https://in.tradingview.com/chart/">TradingView</a>
@@ -95,26 +145,59 @@ h1{
 </div>
 
 <!-- SUPPORT -->
-<a class="support" href="https://wa.me/9026550240">💬</a>
+<div class="support-btn" onclick="toggleSupport()">💬</div>
+
+<div id="supportMenu">
+
+<a class="support-item"
+href="https://wa.me/9026550240?text=Hi%20I%20need%20support"
+target="_blank">WhatsApp Support</a>
+
+<a class="support-item"
+href="https://wa.me/9026550240?text=Feedback%20for%20your%20website"
+target="_blank">Feedback</a>
+
+<a class="support-item"
+href="tel:9026550240">Call Now</a>
+
+</div>
+
+</div>
 
 <script>
-function updateClock(){
-  const now = new Date();
 
-  let h = now.getHours();
-  let m = now.getMinutes();
-  let s = now.getSeconds();
+/* LOGIN SYSTEM */
+function login(){
+  let name=document.getElementById("name").value;
+  let otp=document.getElementById("otp").value;
 
-  h = h < 10 ? "0" + h : h;
-  m = m < 10 ? "0" + m : m;
-  s = s < 10 ? "0" + s : s;
-
-  document.getElementById("clock").innerText =
-    "Time: " + h + ":" + m + ":" + s;
+  if(otp=="1234" && name!=""){
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("app").style.display="block";
+  }else{
+    alert("Wrong OTP (use 1234)");
+  }
 }
 
-setInterval(updateClock, 1000);
+/* CLOCK */
+function updateClock(){
+  const now=new Date();
+  let h=now.getHours();
+  let m=now.getMinutes();
+  let s=now.getSeconds();
+
+  document.getElementById("clock").innerText=
+  "Time: "+h+":"+m+":"+s;
+}
+setInterval(updateClock,1000);
 updateClock();
+
+/* SUPPORT MENU */
+function toggleSupport(){
+  let menu=document.getElementById("supportMenu");
+  menu.style.display = menu.style.display==="flex" ? "none" : "flex";
+}
+
 </script>
 
 </body>
