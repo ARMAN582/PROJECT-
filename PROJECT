@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arman Links Hub</title>
+<title>Arman Hub</title>
 
 <style>
 body{
@@ -25,7 +25,14 @@ body{
 
 /* Header */
 h1{
-  margin:20px 0;
+  margin:15px 0 5px;
+}
+
+/* Clock */
+#clock{
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:10px;
 }
 
 /* Grid */
@@ -33,7 +40,7 @@ h1{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:15px;
-  padding:20px;
+  padding:15px;
 }
 
 /* Cards */
@@ -52,7 +59,7 @@ h1{
   box-shadow:0 0 25px #0f0;
 }
 
-/* Floating support */
+/* Support Button */
 .support{
   position:fixed;
   bottom:20px;
@@ -65,25 +72,14 @@ h1{
   color:#000;
   box-shadow:0 0 20px #0f0;
 }
-
-/* Music button */
-.music{
-  position:fixed;
-  bottom:90px;
-  right:20px;
-  background:#fff;
-  color:#000;
-  padding:10px 15px;
-  border-radius:20px;
-  font-size:12px;
-  cursor:pointer;
-}
 </style>
 </head>
 
 <body>
 
 <h1>Arman Qureshi Hub</h1>
+
+<div id="clock">Loading time...</div>
 
 <div class="grid">
 
@@ -101,17 +97,24 @@ h1{
 <!-- SUPPORT -->
 <a class="support" href="https://wa.me/9026550240">💬</a>
 
-<!-- MUSIC -->
-<button class="music" onclick="playMusic()">Play Music</button>
-
-<audio id="bgMusic" loop>
-<source src="https://www.fesliyanstudios.com/play-mp3/387">
-</audio>
-
 <script>
-function playMusic(){
-  document.getElementById("bgMusic").play();
+function updateClock(){
+  const now = new Date();
+
+  let h = now.getHours();
+  let m = now.getMinutes();
+  let s = now.getSeconds();
+
+  h = h < 10 ? "0" + h : h;
+  m = m < 10 ? "0" + m : m;
+  s = s < 10 ? "0" + s : s;
+
+  document.getElementById("clock").innerText =
+    "Time: " + h + ":" + m + ":" + s;
 }
+
+setInterval(updateClock, 1000);
+updateClock();
 </script>
 
 </body>
