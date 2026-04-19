@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arman Links Hub</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(270deg,#000,#001f1f,#000);
+  background-size:400% 400%;
+  animation:bg 10s ease infinite;
+  color:#fff;
+  text-align:center;
+}
+
+/* Background animation */
+@keyframes bg{
+  0%{background-position:0%}
+  50%{background-position:100%}
+  100%{background-position:0%}
+}
+
+/* Header */
+h1{
+  margin:20px 0;
+}
+
+/* Grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  padding:20px;
+}
+
+/* Cards */
+.card{
+  background:rgba(255,255,255,0.08);
+  padding:20px;
+  border-radius:15px;
+  text-decoration:none;
+  color:#fff;
+  box-shadow:0 0 15px rgba(0,255,0,0.4);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 25px #0f0;
+}
+
+/* Floating support */
+.support{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
+  font-size:22px;
+  text-decoration:none;
+  color:#000;
+  box-shadow:0 0 20px #0f0;
+}
+
+/* Music button */
+.music{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  background:#fff;
+  color:#000;
+  padding:10px 15px;
+  border-radius:20px;
+  font-size:12px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Arman Qureshi Hub</h1>
+
+<div class="grid">
+
+<a class="card" href="https://wa.me/9026550240">WhatsApp</a>
+<a class="card" href="https://www.instagram.com/armanqureshi2800">Instagram</a>
+<a class="card" href="https://www.facebook.com/share/19pPMX9SMV/">Facebook</a>
+<a class="card" href="https://twitter.com/ArmanQureshi280">Twitter</a>
+<a class="card" href="https://youtube.com/@popular_ff?si=bvnTuAYGFwvj2z30">YouTube</a>
+<a class="card" href="https://www.linkedin.com/in/arman-qureshi-47953b295">LinkedIn</a>
+<a class="card" href="https://www.binance.com/en-IN/trade/BTC_USDT">Binance</a>
+<a class="card" href="https://in.tradingview.com/chart/">TradingView</a>
+
+</div>
+
+<!-- SUPPORT -->
+<a class="support" href="https://wa.me/9026550240">💬</a>
+
+<!-- MUSIC -->
+<button class="music" onclick="playMusic()">Play Music</button>
+
+<audio id="bgMusic" loop>
+<source src="https://www.fesliyanstudios.com/play-mp3/387">
+</audio>
+
+<script>
+function playMusic(){
+  document.getElementById("bgMusic").play();
+}
+</script>
+
+</body>
+</html>
